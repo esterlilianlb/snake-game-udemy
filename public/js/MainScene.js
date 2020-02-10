@@ -10,6 +10,6 @@ export default class MainScene extends Phaser.Scene {
     }
 
     update(time) {
-        console.log('update');
+        this.snake.update(time);
     }
 }
