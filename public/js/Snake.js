@@ -2,7 +2,7 @@ export default class Snake {
     constructor(scene) {
         this.scene = scene;
         this.lastMoveTime = 0;
-        this.moveInterval = 500;
+        this.moveInterval = 100;
         this.tileSize = 16;
         this.direction = Phaser.Math.Vector2.RIGHT;
         this.body = [];
@@ -15,7 +15,12 @@ export default class Snake {
                 0xff0000)
             .setOrigin(0)
         );
-        this.apple = this.scene.add.rectangle(0, 0, this.tileSize, this.tileSize, 0x00ff00)
+        this.apple = this.scene.add.rectangle(
+            0, 
+            0, 
+            this.tileSize, 
+            this.tileSize, 
+            0x00ff00)
             .setOrigin(0);
         this.positionApple();
         scene.input.keyboard.on('keydown', e => {
@@ -53,11 +58,26 @@ export default class Snake {
     }
     
     move() {
+        let x = this.body[0].x + this.direction.x * this.tileSize;
+        let y = this.body[0].y + this.direction.y * this.tileSize;
+
+        if(this.apple.x === x && this.apple.y === y) {
+            //eaten the apple
+            this.body.push(this.scene.add.rectangle(
+                0, 
+                0, 
+                this.tileSize, 
+                this.tileSize, 
+                0xffffff).
+                setOrigin(0));
+            this.positionApple();
+        }
+
         for(let i = this.body.length - 1; i>0; i--) {
             this.body[i].x = this.body[i-1].x;
             this.body[i].y = this.body[i-1].y;
         }
-        this.body[0].x += this.direction.x * 16;
-        this.body[0].y += this.direction.y * 16;
+        this.body[0].x = x;
+        this.body[0].y = y;
     }
 }
