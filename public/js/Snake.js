@@ -88,5 +88,11 @@ export default class Snake {
             this.body[0].y >= this.scene.game.config.height) {
                 this.scene.scene.restart();
         }
+
+        //death by eating own tail
+        let tail = this.body.slice(1);
+        if(tail.filter(s => s.x === this.body[0].x && s.y === this.body[0].y).length > 0) {
+            this.scene.scene.restart();
+        }
     }
 }
