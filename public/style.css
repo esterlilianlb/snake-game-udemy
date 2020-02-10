@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Bungee&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@media (min-width: 600px) {
+body {
+    display: flex;
+    justify-content: space-around;
+    background: #f8fa73;
+    max-width: 100%;
+    max-height: fit-content;
+}
+
+section {
+    background: coral;
+    padding: 5%;
+}
+
+h1 {
+    font-family: 'Bungee', cursive;
+    font-size: 50px;
+    text-align: center;
+}
+
+p {
+    margin: 3%;
+    text-align: center;
+    font-size: 30px;
+}
+
+div#phaser-game {
+    width: fit-content;
+    border: 6px solid cadetblue;
+    height: fit-content;
+    margin-top: 1%;
+}
+}
